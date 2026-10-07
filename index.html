@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battlefleet — prototype</title>
+<style>
+  [hidden] { display: none !important; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #000;
+               font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #dde4ff; }
+  canvas { display: block; }
+
+  #hud { position: fixed; left: 14px; top: 12px; white-space: pre-line; font-size: 13px;
+         line-height: 1.5; text-shadow: 0 0 4px #000, 0 0 8px #000; pointer-events: none; z-index: 5; }
+
+  #cross { position: fixed; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px;
+           border: 2px solid rgba(120, 255, 255, .8); border-radius: 50%; pointer-events: none; z-index: 5; }
+  #cross::after { content: ""; position: absolute; left: 50%; top: 50%; width: 2px; height: 2px;
+                  margin: -1px 0 0 -1px; background: #7ff; }
+
+  #markers { position: fixed; inset: 0; pointer-events: none; z-index: 4; overflow: hidden; }
+  .marker { position: absolute; transform: translate(-50%, -50%); font-size: 12px; white-space: nowrap;
+            text-shadow: 0 0 4px #000, 0 0 6px #000; }
+
+  #overlay { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center;
+             justify-content: center; background: rgba(0, 0, 10, .72); }
+  #overlay.opaque { background: #000; }
+  #overlay .box { max-width: 460px; padding: 28px 32px; text-align: center;
+                  background: rgba(14, 18, 40, .95); border: 1px solid #38406a; border-radius: 10px; }
+  #overlay h1 { margin: 0 0 10px; font-size: 22px; letter-spacing: .5px; }
+  #overlay p { margin: 0 0 20px; line-height: 1.5; color: #b8c2e8; }
+  #overlay button { margin: 4px; padding: 10px 18px; font-size: 15px; color: #fff; cursor: pointer;
+                    background: #2a3a8a; border: 1px solid #5568d0; border-radius: 6px; }
+  #overlay button:hover { background: #3a50c0; }
+</style>
+</head>
+<body>
+  <div id="hud"></div>
+  <div id="cross" hidden></div>
+  <div id="markers"></div>
+  <div id="overlay" hidden>
+    <div class="box">
+      <h1 id="ov-title"></h1>
+      <p id="ov-text"></p>
+      <div id="ov-btns"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="logic.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
